@@ -13,16 +13,16 @@ export default function Profile() {
 
   const history = useHistory();
   
-  const ongId = localStorage.getItem('ongId');
+  const ongId = localStorage.getItem('ongId'); //buscar salvas no browser
   const ongName = localStorage.getItem('ongName');
-
-  useEffect(() => {
+  //useffect para determinar quando executar um componente
+  useEffect(() => { // 1param os dados exib 2param quando atualiza-los
     api.get('profile', {
-      headers: {
+      headers: { // header para passar qual ong esta logada
         authorization: ongId, 
       }
-    }).then(reponse => {
-      setIncidents(reponse.data);
+    }).then(reponse => { // .then para buscar os dados da ong
+      setIncidents(reponse.data); // dados salvos no state
     })
   }, [ongId]);
 
@@ -41,7 +41,7 @@ export default function Profile() {
   }
 
   function handleLogout() {
-    localStorage.clear();
+    localStorage.clear(); // limpar dados do local storage
 
     history.push('/');
   }
@@ -60,24 +60,24 @@ export default function Profile() {
 
       <h1>Registered Incidents</h1>
 
-      <ul>
-        {incidents.map(incident => (
-          <li key={incident.id}>
-            <strong>INCIDENT:</strong>
+      <ul> 
+        {incidents.map(incident => ( //map feito para percorrer todos os casos
+          <li key={incident.id} > {/* repetir o primeiro tem que ter uma key*/} 
+            <strong>INCIDENT:</strong> 
             <p>{incident.title}</p>
 
             <strong>DESCRIPTION:</strong>
             <p>{incident.description}</p>
 
             <strong>IMPORTANCE:</strong>
-            <p>{Intl.NumberFormat('eng-UK', { style: 'currency', currency: 'GBP'}).format(incident.value)}</p>
+            <p>{Intl.NumberFormat('eng-UK', { style: 'currency', currency: 'GBP'}).format(incident.value)}</p> {/* formatar dinheiro */}
 
-            <button onClick={() => handleDeleteIncident(incident.id)} type="button">
+            <button onClick={() => handleDeleteIncident(incident.id)} type="button"> {/* arrow func criara para conseguir passar param */}
               <FiTrash2 size={20} color="#a8a8b3" />
             </button>
           </li>
-        ))}
-      </ul>
-    </div>
+        ))} 
+      </ul> 
+    </div> 
   );
 }
