@@ -5,8 +5,8 @@ const routes = require('./routes');
 
 const app = express();
 
-app.use(cors());
-app.use(express.json());
+app.use(cors()); //seguranca para determinar quem pode acessar app
+app.use(express.json()); // usar json nas requisicoes
 app.use(routes);
 app.use(errors());
 

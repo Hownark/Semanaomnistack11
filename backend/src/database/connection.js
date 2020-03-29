@@ -6,3 +6,5 @@ const env = process.env.NODE_ENV === 'test' ? config.test : config.development;
 const connection = knex(env);
 
 module.exports = connection;
+
+// criando conexao com o banco

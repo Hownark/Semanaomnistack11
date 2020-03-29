@@ -9,7 +9,7 @@ module.exports = {
         console.log(count);
 
         const incidents = await connection('incidents')
-            .join('ongs', 'ongs.id', '=', 'incidents.ong_id')
+            .join('ongs', 'ongs.id', '=', 'incidents.ong_id') //trazer dados da tabela ongs fazendo join
             .limit(5)
             .offset((page - 1) * 5)
             .select([
@@ -55,6 +55,6 @@ module.exports = {
 
         await connection('incidents').where('id', id).delete();
 
-        return response.status(204).send();
+        return response.status(204).send(); // 204 positivo sem conteudo
     }
 };
