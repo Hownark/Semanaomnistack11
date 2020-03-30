@@ -58,7 +58,7 @@ export default function Register() {
           <input 
             placeholder="ONG name"
             value={name} // o que sera o input
-            onChange={e => setName(e.target.value)} // definir o valor do input
+            onChange={e => setName(e.target.value)} // pegar o valor do input
           />
 
           <input type="email" 
